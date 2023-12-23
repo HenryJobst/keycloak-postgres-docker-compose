@@ -6,11 +6,10 @@
 # Note that the `.env` file should be in the same directory as `keycloak-traefik-letsencrypt-docker-compose.yml`.
 
 # Create networks for your services before deploying the configuration using the commands:
-# `docker network create traefik-network`
 # `docker network create keycloak-network`
 
 # Deploy Keycloak using Docker Compose:
-# `docker compose -f keycloak-traefik-letsencrypt-docker-compose.yml -p keycloak up -d`
+# `docker compose -p keycloak up -d`
 
 # Backups
 # The `backups` container in the configuration is responsible for the following:
@@ -126,10 +125,10 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.keycloak.rule=Host(`${KEYCLOAK_HOSTNAME}`)"
       - "traefik.http.routers.keycloak.service=keycloak"
-      - "traefik.http.routers.keycloak.entrypoints=websecure"
+      - "traefik.http.routers.keycloak.entrypoints=https"
       - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
       - "traefik.http.routers.keycloak.tls=true"
-      - "traefik.http.routers.keycloak.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.keycloak.tls.certresolver=http"
       - "traefik.http.services.keycloak.loadbalancer.passhostheader=true"
       - "traefik.http.routers.keycloak.middlewares=compresstraefik"
       - "traefik.http.middlewares.compresstraefik.compress=true"
