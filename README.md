@@ -1,16 +1,16 @@
-# Keycloak with Let's Encrypt Using Docker Compose
+# Keycloak using Docker Compose
 
-📙 The complete installation guide is available on my [website](https://www.heyvaldemar.com/install-keycloak-using-docker-compose/).
+This repo is a modified version (exclude bundled traefik) of the original [repo](https://github.com/heyValdemar/keycloak-traefik-letsencrypt-docker-compose) of Vladimir Mikhalev. See there for further informations.
 
-❗ Change variables in the `.env` to meet your requirements.
+❗ Copy `.env.example` to `.env` and change voriables to meet your requirements.
 
-💡 Note that the `.env` file should be in the same directory as `keycloak-traefik-letsencrypt-docker-compose.yml`.
+💡 Note that the `.env` file should be in the same directory as `keycloak-postgres-docker-compose.yml`.
 
 Create networks for your services before deploying the configuration using the commands:
 
-`docker network create traefik-network`
-
 `docker network create keycloak-network`
+
+Change the traefic network name (proxy) in `keycloak-postgres-docker-compose.yml` according to your needs.
 
 Deploy Keycloak using Docker Compose:
 
